@@ -21,15 +21,33 @@ export default class Searcher extends Component {
         const {data} = this.props;
         return (
             <div className="list">
-                <input type="text" onChange={this.handleChange.bind(this)}/>
-                <ul>
-                    {data.filter( item => { return this.isNameMatch.bind(this)(item.name.toLowerCase())}).map( item => {
-                        console.log(item.name)
-                        return (<li>
-                            {item.name}
-                        </li>)
+                <div className="header">
+                    <h1 className="">Search</h1>
+                    <input class="form-control form-control-sm" name="search" type="text" placeholder="Search by name" aria-label="Search" onChange={this.handleChange.bind(this)}/>
+                </div>
+                <table class="table table-striped">                    
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {data.filter( item => { return this.isNameMatch.bind(this)(item.name.toLowerCase())}).map( (item, i) => {
+                        return (
+                              <tr>
+                                <th scope="row">{i+1}</th>
+                                <td>{item.name}</td>
+                                <td>{item.age}</td>
+                                <td>{item.email}</td>
+                              </tr>
+                        )
                     })}
-                </ul>
+                    </tbody>
+                </table>
+                
             </div>
         )
     }

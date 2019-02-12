@@ -5,7 +5,7 @@ import Searcher from './Searcher';
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container --center">
         <Searcher
           data={data}
         />
