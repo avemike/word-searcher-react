@@ -12,10 +12,8 @@ export default class Searcher extends Component {
         this.setState({search: serchedText});
     }
     isNameMatch(name, search = this.state.search) {
-        if(!search.length) return true;
-        else if(!name.length) return false;
-        else if(name[0] !== search[0]) return this.isNameMatch(name.substring(1), search); 
-        else return this.isNameMatch(name.substring(1), search.substring(1));
+        const regSearch = '.*' + search.toLowerCase().split('').join('.*') + '.*' ;
+        return Boolean(name.match(regSearch));
     }
     render() {
         const {data} = this.props;
